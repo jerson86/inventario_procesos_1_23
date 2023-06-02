@@ -11,6 +11,7 @@ public class Constants {
     public static final String USER_LOGIN = "Usuario logeado!";
     public static final String REGISTER_FOUND = "Registro encontrado!";
     public static final String REGISTER_LIST = "Lista de registros!";
+    public static final String REGISTER_DATA_ERROR = "Error en los datos enviados";
 }
 
 

@@ -16,8 +16,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.procesos.inventario.utils.Constants.REGISTER_DATA_ERROR;
+import static com.procesos.inventario.utils.Constants.REGISTER_UPDATED;
+
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -62,6 +66,16 @@ public class UserController {
             apiResponse = new ApiResponse(Constants.REGISTER_NOT_FOUND,"");
             return new ResponseEntity<>(apiResponse,HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity updateUser(@PathVariable Long id, @RequestBody User user) {
+        if (!userService.updateUser(id, user)) {
+            apiResponse = new ApiResponse(REGISTER_DATA_ERROR, "");
+            return new ResponseEntity<>(apiResponse, HttpStatus.PAYMENT_REQUIRED);
+        }
+        apiResponse = new ApiResponse(REGISTER_UPDATED, "");
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 }
 
